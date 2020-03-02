@@ -30,7 +30,7 @@ example.com 改成你自己的
 
 ### Up(域名解析到 VPS 后😂)
 ```sh
-docker-compose -f Dockerfile.tls up
+docker-compose -f docker-compose.tls up
 ### 看到 `TLS Done! ` 后，Ctrl+C 退出
 docker-compose up -d
 ### Hello, Internet~

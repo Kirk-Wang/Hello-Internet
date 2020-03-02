@@ -1,0 +1,23 @@
+version: "3"
+services:
+  v2:
+    image: v2ray/official
+    volumes:
+      - /root/config:/etc/v2ray
+    networks:
+      - v2-net
+  nginx:
+    image: nginx
+    volumes:
+      - /root/config:/etc/nginx/conf.d
+      - /root/config:/etc/v2ray
+      - ./html:/var/www/html
+    networks:
+      - v2-net
+    ports:
+      - 443:443
+      - 80:80
+
+networks:
+  v2-net:
+    driver: bridge

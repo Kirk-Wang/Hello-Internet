@@ -1,0 +1,15 @@
+FROM ubuntu:16.04
+WORKDIR /app
+COPY index.js /app/index.js
+ENV V2RAY_ID 1dd6fa07-3f87-72c5-7e60-faebca2e33ad
+ENV V2RAY_WS_PATH "/ccc"
+ENV V2RAY_SERVER_PORT 10086
+ENV V2RAY_CLIENT_PORT 1080
+ENV V2RAY_DOMAIN example.com
+VOLUME /app/config
+EXPOSE 80
+RUN apt update && apt install nodejs curl socat wget cron -y && mkdir test && nodejs index.js
+CMD mv ./test/* ./config && curl https://get.acme.sh | sh && ~/.acme.sh/acme.sh --issue -d $V2RAY_DOMAIN --standalone -k ec-256 \
+ && ~/.acme.sh/acme.sh --installcert -d $V2RAY_DOMAIN --fullchainpath /app/config/v2ray.crt --keypath /app/config/v2ray.key --ecc \
+ && echo "TLS Done!!!" \
+  && tail -f /dev/null

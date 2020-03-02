@@ -22,6 +22,12 @@ curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compo
 chmod +x /usr/local/bin/docker-compose
 ```
 
+### 修改 Dockerfile.tls
+```
+ENV V2RAY_DOMAIN example.com
+```
+example.com 改成你自己的
+
 ### Up(域名解析到 VPS 后😂)
 ```sh
 docker-compose -f Dockerfile.tls up

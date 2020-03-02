@@ -137,7 +137,7 @@ server {
         proxy_set_header Host $http_host;
         }
     location / {
-        proxy_pass https://www.viewster.com;
+        proxy_pass https://${process.env.V2RAY_DOMAIN};
         proxy_set_header  X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
